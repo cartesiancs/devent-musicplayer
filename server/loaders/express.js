@@ -20,6 +20,8 @@ export async function init (app) {
     app.set('trust proxy', 1);
     app.set("view engine", "hbs");    
     app.set('views','./client/views');
+    app.use('/static', express.static('client/static'));
+
     app.disable('x-powered-by');
     
     app.use(bodyParser.json());

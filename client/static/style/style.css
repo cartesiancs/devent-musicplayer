@@ -1,0 +1,11 @@
+h1, h2, h3 {
+    font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    font-weight: 700 !important;
+}
+
+h4, h5, h6 {
+    font-family: 'Noto Sans KR', sans-serif;
+    word-break: keep-all;
+    font-weight: 500 !important;
+}

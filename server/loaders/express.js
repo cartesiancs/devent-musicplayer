@@ -21,6 +21,7 @@ export async function init (app) {
     app.set("view engine", "hbs");    
     app.set('views','./client/views');
     app.use('/static', express.static('client/static'));
+    app.use('/static/dist', express.static('dist'));
 
     app.disable('x-powered-by');
     

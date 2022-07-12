@@ -5,40 +5,41 @@
     "description": "DMP",
     "main": "app.js",
     "scripts": {
-      "start": "node app.js",
-      "bundle": "webpack --mode=production"
+        "start": "node app.js",
+        "bundle": "webpack --mode=production"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Team-DeVent/devent-frame"
+        "type": "git",
+        "url": "git+https://github.com/Team-DeVent/devent-frame"
     },
     "author": "dipokalhhj",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/Team-DeVent/devent-frame/issues"
+        "url": "https://github.com/Team-DeVent/devent-frame/issues"
     },
     "homepage": "https://github.com/Team-DeVent/devent-frame#readme",
     "dependencies": {
-      "bcrypt": "^5.0.1",
-      "body-parser": "^1.19.1",
-      "cookie-parser": "^1.4.6",
-      "cors": "^2.8.5",
-      "css-loader": "^6.7.1",
-      "dayjs": "^1.10.7",
-      "express": "^4.17.2",
-      "express-handlebars": "^6.0.2",
-      "helmet": "^5.0.2",
-      "jsonwebtoken": "^8.5.1",
-      "mini-css-extract-plugin": "^2.6.1",
-      "multer": "^1.4.4",
-      "mysql2": "^2.3.3",
-      "nodemon": "^2.0.16",
-      "passport": "^0.6.0",
-      "passport-jwt": "^4.0.0",
-      "sanitize-html": "^2.6.1",
-      "sharp": "^0.30.7",
-      "style-loader": "^3.3.1",
-      "uuid": "^8.3.2"
+        "bcrypt": "^5.0.1",
+        "body-parser": "^1.19.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "css-loader": "^6.7.1",
+        "dayjs": "^1.10.7",
+        "express": "^4.17.2",
+        "express-handlebars": "^6.0.2",
+        "helmet": "^5.0.2",
+        "jsonwebtoken": "^8.5.1",
+        "mini-css-extract-plugin": "^2.6.1",
+        "multer": "^1.4.4",
+        "mysql2": "^2.3.3",
+        "nodemon": "^2.0.16",
+        "passport": "^0.6.0",
+        "passport-jwt": "^4.0.0",
+        "sanitize-html": "^2.6.1",
+        "sharp": "^0.30.7",
+        "style-loader": "^3.3.1",
+        "uuid": "^8.3.2",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0"
     }
-  }
-  
+}

@@ -9,3 +9,42 @@ h4, h5, h6 {
     word-break: keep-all;
     font-weight: 500 !important;
 }
+
+html, body {
+    padding: 0px;
+}
+
+.card {
+    border-radius: 0.6rem;
+}
+
+.card-body {
+    border-radius: 0 0 0.6rem 0.6rem ;
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+
+}
+
+.card-img-top {
+    border-radius: 0.6rem 0.6rem 0 0;
+
+}
+
+.card-img-square {
+
+    border-radius: 0.6rem;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-border-none {
+    border: none;
+}
+
+.container-fluid {
+    padding: 0px;
+}

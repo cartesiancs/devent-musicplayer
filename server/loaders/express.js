@@ -7,6 +7,7 @@ import { engine } from 'express-handlebars';
 import helmet from "helmet";
 
 import clientRouter from '../../client/router.js';
+import apiRouter from '../../server/api.js';
 
 
 
@@ -39,5 +40,7 @@ export async function init (app) {
 
 
     app.use('/', clientRouter);
+    app.use('/api', apiRouter);
+
     return app;
 }

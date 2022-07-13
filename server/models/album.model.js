@@ -14,6 +14,34 @@ const albumModel = {
             console.error(error)
             return { status: -1 }
         }
+    },
+    select: async function () {
+        try {
+            await db.serialize();
+            const query_select = `SELECT * FROM album`;
+
+    
+            const data = await new Promise((resolve, reject) => {
+                db.all(query_select, function(err,row){
+                    let status = typeof row !== 'undefined'
+                    
+                    if (status == true) {
+                        resolve({
+                            status: status, 
+                            result: row
+                        })
+                    } else {
+                        resolve({ 
+                            status: -1
+                        })
+                    }        
+                });
+            })
+            return data
+        } catch (error) {
+            console.error(error)
+            return { status: -1 }
+        }
     }
 }
 

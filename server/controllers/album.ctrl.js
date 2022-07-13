@@ -15,6 +15,15 @@ const albumController = {
         } else {
             res.status(401).json({status: -1})
         }
+    },
+    read: async function (req, res) {
+        let result = await albumModel.select()
+
+        if (result.status == 1) {
+            res.status(200).json({status: 1, result: result.result})
+        } else {
+            res.status(401).json({status: -1})
+        }
     }
 }
 

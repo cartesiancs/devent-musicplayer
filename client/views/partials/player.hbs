@@ -1,7 +1,39 @@
 <div class="ms-3 me-3">
-    <h2 class="mb-3">플레이어</h2>
 
-    <div class="row m-0">
+    <div class="row align-items-center m-0 mb-3">
+        <div class="col align-middle">
+            <h2 class="">앨범</h2>
+
+        </div>
+        <div class="col text-end">
+            <button class="btn btn-blue-tint" data-bs-toggle="modal" data-bs-target="#add_album">앨범 추가</button>
+
+        </div>
+    </div>
+
+    <dds-modal
+    modal-id="add_album"
+    modal-title="앨범을 추가해요."
+    modal-subtitle="앨범">
+        <dds-content>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="form_album_title" placeholder="앨범 타이틀">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" id="form_album_text" placeholder="앨범 설명">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" id="form_album_image" placeholder="앨범 이미지 주소">
+            </div>
+        </dds-content>
+        <dds-modal-button button-color="btn-blue" button-text-color="text-primary" is-dismiss="false" onclick="addAlbum()">추가</dds-modal-button>
+        <dds-modal-button button-color="btn-light" button-text-color="text-dark" is-dismiss="true">닫기</dds-modal-button>
+    </dds-modal>
+    
+
+    <div class="row m-0 mb-5" id="list_album">
         <card-album image-src="/static/image/album.jpg">
             <card-album-title>dl</card-album-title>
             <card-album-text>dl</card-album-text>

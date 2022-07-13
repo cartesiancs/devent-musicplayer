@@ -1,7 +1,11 @@
 import { Router } from 'express';
 const router = Router();
 
-router.get('/*', function(req, res) {
+router.get('/', function(req, res) {
+    res.render('index')
+});
+
+router.get('/page/*', function(req, res) {
     res.render('index')
 });
 

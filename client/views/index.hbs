@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>데벤트 플레이어</title>
 
     <!-- CSS Dependencies -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
@@ -19,13 +20,14 @@
   <body>
     <div class="container-fluid mt-5" id="app"></div>
 
-    {{> navbar}}
+    {{> articles/navbar}}
 
     <script>
         const routes = {
-            "/": `{{> home}} `,
-            "/page/about": `<h1>About</h1><p>This is a tiny SPA</p>`,
-            "/page/player": `{{> player}}`,
+            "/page/app": `{{> pages/home}} `,
+            "/page/about": `{{> pages/about}}`,
+            "/page/album": `{{> pages/album.list}}`,
+            "/page/album/[0-9]*": `{{> pages/album}}`,
             "/page/notfound": `404`
         };
 
@@ -45,17 +47,34 @@
             let result = await albumHandle.create(album)
         }
 
+        async function deleteAlbum() {
+            let albumHandle = new handle.Album()
+
+            let album = {
+                album_idx: location.pathname.split("/")[3]
+            }
+
+            let result = await albumHandle.delete(album)
+            console.log(result)
+        }
+
         async function loadAlbum() {
             let albumHandle = new handle.Album()
             let albumList = document.querySelector("#list_album")
 
-            let result = await albumHandle.read()
+            let album = {
+                album_idx: location.pathname.split("/")[3] || 'all'
+            }
+
+            let result = await albumHandle.read(album)
             result.result.forEach((element) => {
                 let body = document.createElement('card-album')
                 let title = document.createElement('card-album-title')
                 let text = document.createElement('card-album-text')
 
                 body.setAttribute("image-src", element.album_image)
+                body.setAttribute("album-idx", element.idx)
+
                 title.innerText = element.album_title
                 text.innerText = element.album_text
 

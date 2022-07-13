@@ -17,10 +17,27 @@ const albumController = {
         }
     },
     read: async function (req, res) {
-        let result = await albumModel.select()
+        let album = {
+            album_idx: req.params.idx || 'all'
+        }
+
+        let result = await albumModel.select(album)
 
         if (result.status == 1) {
             res.status(200).json({status: 1, result: result.result})
+        } else {
+            res.status(401).json({status: -1})
+        }
+    },
+    delete: async function (req, res) {
+        let album = {
+            album_idx: req.params.idx
+        }
+
+        let result = await albumModel.delete(album)
+
+        if (result.status == 1) {
+            res.status(200).json({status: 1})
         } else {
             res.status(401).json({status: -1})
         }

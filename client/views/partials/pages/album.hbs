@@ -1,0 +1,34 @@
+<div class="ms-3 me-3">
+
+    <div class="row d-flex justify-content-center align-items-center m-0 mb-3">
+        <div class="col-6 align-middle text-center" id="list_album">
+
+
+        </div>
+
+    </div>
+    <div class="row d-flex justify-content-center align-items-center m-0 mb-3">
+        <div class="col-8 align-middle text-center" id="list_album">
+
+            <div class="dropdown">
+                <button class="btn btn-blue-tint"><i class="fas fa-play me-1"></i> 앨범 재생</button>
+
+                <button class="btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-cog me-1"></i> 설정 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_album">삭제</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dds-modal
+modal-id="delete_album"
+modal-title="정말 앨범을 삭제하실건가요?"
+modal-subtitle="한 번 삭제하면 취소할 수 없어요.">
+    <dds-modal-button button-color="btn-red-tint" is-dismiss="false" onclick="deleteAlbum()">네, 삭제할게요</dds-modal-button>
+    <dds-modal-button button-color="btn-light" button-text-color="text-dark" is-dismiss="true">아니요</dds-modal-button>
+</dds-modal>

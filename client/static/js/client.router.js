@@ -2,16 +2,43 @@
 
 function render(pathname) {
   window.history.pushState({pathname}, pathname, pathname);
-  body.app.innerHTML = routes[pathname] || routes['/notfound'];
-  loadscript(pathname)
+  pathname = pathname + "_"
+  let isvaild = false
+
+  for (const key in routes) {
+    if (Object.hasOwnProperty.call(routes, key)) {
+      let regex = new RegExp(key+'_', 'gi');
+      if (pathname.match(regex)) {
+        isvaild = true
+        pathname = key
+        break
+      }
+    }
+  }
+
+
+  if (isvaild) {
+    body.app.innerHTML = routes[pathname] || routes['/page/notfound'];
+    loadscript(pathname)
+  } else {
+    body.app.innerHTML = routes['/page/notfound'];
+    loadscript('/page/notfound')
+  }
+
+
 }
 
 function loadscript(pathname) {
+  console.log(pathname)
   switch (pathname) {
-    case '/page/player':
+    case '/page/album':
       loadAlbum()
       break;
   
+    case '/page/album/[0-9]*':
+      loadAlbum()
+      break;
+      
     default:
       break;
   }

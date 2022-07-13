@@ -17,9 +17,21 @@ export default class Album {
         return data;
     }
 
-    async read() {
-        let response = await fetch("/api/album", {
+    async read(album) {
+
+        let idx = album.album_idx == 'all' ? '' : album.album_idx
+        let response = await fetch(`/api/album/${idx}`, {
             method: "GET"
+        });
+    
+        let data = response.json();
+        return data;
+    }
+
+    async delete(album) {
+
+        let response = await fetch(`/api/album/${album.album_idx}`, {
+            method: "DELETE"
         });
     
         let data = response.json();

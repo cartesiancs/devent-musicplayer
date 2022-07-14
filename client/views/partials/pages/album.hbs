@@ -21,6 +21,18 @@
                 </ul>
             </div>
         </div>
+
+        <table class="table mt-5">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">곡명</th>
+            </tr>
+        </thead>
+        <tbody id="list_music">
+
+        </tbody>
+        </table>
     </div>
 </div>
 
@@ -29,6 +41,6 @@
 modal-id="delete_album"
 modal-title="정말 앨범을 삭제하실건가요?"
 modal-subtitle="한 번 삭제하면 취소할 수 없어요.">
-    <dds-modal-button button-color="btn-red-tint" is-dismiss="false" onclick="deleteAlbum()">네, 삭제할게요</dds-modal-button>
+    <dds-modal-button button-color="btn-red-tint" is-dismiss="false" onclick="handle.albumFunc.deleteAlbum()">네, 삭제할게요</dds-modal-button>
     <dds-modal-button button-color="btn-light" button-text-color="text-dark" is-dismiss="true">아니요</dds-modal-button>
 </dds-modal>

@@ -29,4 +29,19 @@ db.run(sql_album, (error) => {
     console.log('info', 'album table');
 });
 
+
+const sql_music = `create table IF NOT EXISTS music (
+	idx integer primary key autoincrement, 
+    album_idx integer, 
+	music_title text, 
+	music_filename text
+);`;
+
+db.run(sql_music, (error) => {
+    if( error ) {
+        return console.error(error)
+    }
+    console.log('info', 'music table');
+});
+
 export { db }

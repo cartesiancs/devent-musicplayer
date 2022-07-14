@@ -1,8 +1,12 @@
 import { CardAlbum } from './components/card.js';
 
 import Album from './classes/album.class.js';
+import Music from './classes/music.class.js';
+
+import albumFunc from './functions/album.func.js';
 
 
 customElements.define('card-album', CardAlbum);
 
-export { Album }
+export { Album, Music }
+export { albumFunc }

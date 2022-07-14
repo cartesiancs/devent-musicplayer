@@ -32,13 +32,20 @@ function loadscript(pathname) {
   console.log(pathname)
   switch (pathname) {
     case '/page/album':
-      loadAlbum()
+      handle.albumFunc.loadAlbum()
       break;
   
     case '/page/album/[0-9]*':
-      loadAlbum()
+      load_idx = location.pathname.split("/")[3] || 'all'
+
+      handle.albumFunc.loadAlbum(load_idx)
+      getMusicFromAlbum(load_idx)
       break;
-      
+
+    case '/page/upload':
+      handle.albumFunc.loadAlbumSelect()
+      break;
+
     default:
       break;
   }

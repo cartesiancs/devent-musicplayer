@@ -39,6 +39,7 @@ function loadscript(pathname) {
       load_idx = location.pathname.split("/")[3] || 'all'
       handle.albumFunc.loadAlbum(load_idx)
       handle.musicFunc.getMusicFromAlbum(load_idx)
+
       break;
 
     case '/page/upload':

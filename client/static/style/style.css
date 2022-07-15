@@ -49,6 +49,14 @@ html, body {
     border: none;
 }
 
+.icon-xl {
+    font-size: 2rem;
+}
+
+.div-hide {
+    display: none;
+}
+
 .container-fluid {
     padding: 0px;
 }

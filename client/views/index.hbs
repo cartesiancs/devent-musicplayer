@@ -20,6 +20,20 @@
   <body>
     <div class="container-fluid mt-5" id="app"></div>
     <div id="audio"></div>
+    <dds-modal
+        modal-id="player_music"
+        modal-align="end">
+        <dds-content>
+            <div class="mb-3 text-center">
+                <input type="range" class="form-range" id="player_range" onchange="handle.musicFunc.setCurrentTime()">
+
+                <button id="player_btn_play" class="btn btn-transparent" onclick="handle.musicFunc.playMusic()"><i class="fas fa-play-circle icon-xl"></i></button>
+                <button id="player_btn_pause" class="btn btn-transparent" onclick="handle.musicFunc.pauseMusic()"><i class="fas fa-pause-circle icon-xl"></i></button>
+
+
+            </div>
+        </dds-content>
+    </dds-modal>
 
     {{> articles/navbar}}
 

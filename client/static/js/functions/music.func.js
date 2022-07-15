@@ -1,4 +1,14 @@
 const musicFunc = {
+    object: {
+        audio: new Audio(),
+        currentAudioUrl: '',
+        existAudio: false
+    },
+    modal: {
+        player: new bootstrap.Modal(document.getElementById('player_music'), {
+            keyboard: false
+        })
+    },
     uploadMusic: async function () {
         let musicHandle = new handle.Music()
 
@@ -58,9 +68,54 @@ const musicFunc = {
 
 
     playMusic: async function (url) {
-        let audio = new Audio(url);
-        console.log(audio)
-        audio.play();
+        if (this.object.currentAudioUrl != url) {
+            console.log('change')
+            this.object.audio.pause();
+            this.object.audio = ''
+        }
+
+        if (this.object.existAudio == true && this.object.currentAudioUrl == url) {
+            this.object.audio.play();
+            this.modal.player.show()
+
+        } else {
+            this.object.currentAudioUrl = url
+            this.object.audio = new Audio(url);
+            this.object.audio.play();
+            this.object.existAudio = true
+            this.modal.player.show()
+            document.querySelector("#player_btn_play").setAttribute("onclick", `handle.musicFunc.playMusic('${url}')`)
+        }
+
+        
+        setInterval(() => {
+            document.querySelector("#player_range").value = this.object.audio.currentTime / this.object.audio.duration * 100
+        }, 600);
+        this.showMusicControllerButton('player_btn_pause')
+
+    },
+
+    pauseMusic: async function () {
+        if (this.object.existAudio) {
+            this.object.audio.pause();
+        }
+        this.showMusicControllerButton('player_btn_play')
+    },
+
+    setCurrentTime: async function () {
+        let range_body = document.querySelector("#player_range")
+        let range_value = range_body.value
+
+        this.object.audio.currentTime = range_value * this.object.audio.duration / 100
+    },
+
+
+    showMusicControllerButton: async function (id) {
+        let button_list = ['player_btn_play', 'player_btn_pause']
+        for (let index = 0; index < button_list.length; index++) {
+            document.querySelector(`#${button_list[index]}`).classList.add("div-hide")
+        }
+        document.querySelector(`#${id}`).classList.remove("div-hide")
     }
     
 }

@@ -52,6 +52,12 @@ function loadscript(pathname) {
   
 }
 
+window.onload = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+}
+
 window.addEventListener("popstate", (event) => {
   let pathname = window.location.pathname;
   render(pathname)

@@ -1,0 +1,22 @@
+{
+    "name": "DeVent Music Player",
+    "short_name": "데벤트 음악 플레이어",
+    "icons": [{
+      "src": "static/image/icon-128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      }, {
+        "src": "static/image/icon-256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+      }, {
+        "src": "static/image/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }],
+    "lang": "ko-KR",
+    "start_url": "/page/app",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "white"
+  }

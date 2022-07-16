@@ -2,3 +2,4 @@
 /uploads/*
 .DS_Store
 /server/databases/dmpdb.db
+/server/databases/data/dmpdb.db

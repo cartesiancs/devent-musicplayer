@@ -3,6 +3,7 @@
 let cacheName = 'dmp';
 let filesToCache = [
   '/',
+  '/page/album',
   '/static/style/style.css',
   '/static/dist/index.js',
   '/static/js/client.router.js'

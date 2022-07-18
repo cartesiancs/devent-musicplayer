@@ -13,12 +13,12 @@
             <div class="dropdown">
                 <button class="btn btn-blue-tint" id="button_music_play"><i class="fas fa-play me-1"></i> 앨범 재생</button>
 
-                <button class="btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-cog me-1"></i> 설정 
+                
+
+                <button class="btn btn-light" onclick="handle.musicFunc.playRandomMusic()">
+                    <i class="fas fa-random me-1"></i> 랜덤 재생 
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_album">삭제</a></li>
-                </ul>
+
             </div>
         </div>
 
@@ -34,12 +34,22 @@
         </tbody>
         </table>
     </div>
+
+    <button class="btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-cog me-1"></i> 설정 
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_album">삭제</a></li>
+    </ul>
 </div>
 
 
 
-<div class="mb-5"></div>
 
+<div class="mb-5"></div>
+<br>
+<br>
+<br>
 
 <dds-modal
 modal-id="delete_album"

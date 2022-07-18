@@ -117,6 +117,12 @@ const musicFunc = {
 
     },
 
+    playRandomMusic: async function () {
+        this.object.currentPlaylistUrl.sort(() => Math.random() - 0.5);
+        this.playMusic(this.object.currentPlaylistUrl[0])
+
+    },
+
     pauseMusic: async function () {
         if (this.object.existAudio) {
             this.object.audio.pause();

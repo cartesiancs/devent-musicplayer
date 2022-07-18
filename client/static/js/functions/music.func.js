@@ -2,7 +2,9 @@ const musicFunc = {
     object: {
         audio: new Audio(),
         currentAudioUrl: '',
-        existAudio: false
+        currentPlaylistUrl: [],
+        existAudio: false,
+        isPlaylist: false
     },
     modal: {
         player: new bootstrap.Modal(document.getElementById('player_music'), {
@@ -47,7 +49,11 @@ const musicFunc = {
 
         let count_music = 0
 
-        result.result.forEach((element) => {
+        document.querySelector("#button_music_play")
+            .setAttribute('onclick', `handle.musicFunc.playMusic('/uploads/${result.result[0].music_filename}')`)
+        
+
+        result.result.forEach(async (element) => {
             let body = document.createElement('tr')
             let body_index = document.createElement('th')
             let body_music_title = document.createElement('td')
@@ -63,13 +69,14 @@ const musicFunc = {
 
             table_body.insertAdjacentElement("beforeend", body)
 
+            await this.setPlaylist(`/uploads/${element.music_filename}`)
         })
     },
 
 
     playMusic: async function (url) {
         if (this.object.currentAudioUrl != url) {
-            console.log('change')
+            console.log('music change')
             this.object.audio.pause();
             this.object.audio = ''
         }
@@ -88,10 +95,25 @@ const musicFunc = {
         }
 
         
-        setInterval(() => {
-            document.querySelector("#player_range").value = this.object.audio.currentTime / this.object.audio.duration * 100
+        setInterval(async () => {
+            document.querySelector("#player_range").value = await this.getCurrentTime()
+            if (document.querySelector("#player_range").value == 100) {
+                this.playNextMusic()
+            }
         }, 600);
         this.showMusicControllerButton('player_btn_pause')
+
+    },
+
+    playNextMusic: async function () {
+        let nowIndex = this.object.currentPlaylistUrl.indexOf(this.object.currentAudioUrl)
+        let nextIndex = nowIndex + 1
+        if (nextIndex == this.object.currentPlaylistUrl.length ) {
+            await this.pauseMusic()
+        } else {
+            let nextMusicUrl =  this.object.currentPlaylistUrl[nextIndex]
+            await this.playMusic(nextMusicUrl)
+        }
 
     },
 
@@ -109,6 +131,13 @@ const musicFunc = {
         this.object.audio.currentTime = range_value * this.object.audio.duration / 100
     },
 
+    getCurrentTime: async function () {
+        return this.object.audio.currentTime / this.object.audio.duration * 100
+    },
+
+    setPlaylist: async function (url) {
+        this.object.currentPlaylistUrl.push(url)
+    },
 
     showMusicControllerButton: async function (id) {
         let button_list = ['player_btn_play', 'player_btn_pause']

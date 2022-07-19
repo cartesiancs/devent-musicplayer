@@ -25,3 +25,16 @@ self.addEventListener('fetch', function(e) {
     })
   );
 });
+
+self.addEventListener('activate', function(e) {
+  e.waitUntil(
+    caches.keys().then(function(cacheName) {
+      return Promise.all(
+        cacheName.filter(function(cacheName) {
+        }).map(function(cacheName) {
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
+});

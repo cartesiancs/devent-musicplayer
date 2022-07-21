@@ -35,12 +35,25 @@
         </table>
     </div>
 
-    <button class="btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-cog me-1"></i> 설정 
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_album">삭제</a></li>
-    </ul>
+    <div class="row">
+        <div class="col text-start">
+            <button class="btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-cog me-1"></i> 설정 
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete_album">삭제</a></li>
+            </ul>
+        </div>
+
+        <div class="col text-end">
+            <button class="btn btn-light" onclick="handle.musicFunc.downloadAllMusic()">앨범 다운로드</button>
+
+        </div>
+
+    </div>
+
+
+
 </div>
 
 

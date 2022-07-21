@@ -49,6 +49,11 @@ html, body {
     border: none;
 }
 
+.icon-sm {
+    font-size: 0.7rem;
+    padding-bottom: 0.4rem;
+}
+
 .icon-xl {
     font-size: 2rem;
 }

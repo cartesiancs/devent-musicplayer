@@ -57,24 +57,43 @@ const musicFunc = {
             let body = document.createElement('tr')
             let body_index = document.createElement('th')
             let body_music_title = document.createElement('td')
+            let body_music_download = document.createElement('td')
+
+            let offline = await this.loadOffline(`/uploads/${element.music_filename}`)
+
             count_music = count_music + 1
 
             body.setAttribute('onclick', `handle.musicFunc.playMusic('/uploads/${element.music_filename}')`)
 
             body_index.innerText = count_music
             body_music_title.innerText = element.music_title
+            if (offline.status == 1) {
+                body_music_download.innerHTML = `<i class="fas fa-download text-secondary icon-sm"></i>`
+            }
 
             body.appendChild(body_index)
             body.appendChild(body_music_title)
+            body.appendChild(body_music_download)
 
             table_body.insertAdjacentElement("beforeend", body)
 
             await this.setPlaylist(`/uploads/${element.music_filename}`)
+            
+
         })
     },
 
 
     playMusic: async function (url) {
+        let offline = await this.loadOffline(url)
+        if (offline.status == 1) {
+            let blob = new Blob([offline.result]);
+            let blobUrl = window.URL.createObjectURL(blob);
+            this.replacePlaylist(url, blobUrl)
+            url = blobUrl
+            console.log('off')
+        }
+
         if (this.object.currentAudioUrl != url) {
             console.log('music change')
             this.object.audio.pause();
@@ -143,6 +162,41 @@ const musicFunc = {
 
     setPlaylist: async function (url) {
         this.object.currentPlaylistUrl.push(url)
+    },
+
+    replacePlaylist: async function (targetUrl, url) {
+        let index = this.object.currentPlaylistUrl.indexOf(targetUrl)
+        if (index >= 0) {
+            let replaced = this.object.currentPlaylistUrl.splice(index, 1, url);
+            console.log(this.object.currentPlaylistUrl)
+        }
+    },
+    
+    saveOffline: async function (url) {
+        let res = await fetch(url);
+        const blob = await res.blob();
+        await handle.db.insert(url, blob)
+    },
+
+    downloadAllMusic: async function () {
+        let musicHandle = new handle.Music()
+        let album_idx = location.pathname.split("/")[3]
+        let result = await musicHandle.get(album_idx)
+
+
+        result.result.forEach(async (element) => {
+            await this.saveOffline(`/uploads/${element.music_filename}`)
+            
+        })
+    },
+
+    loadOffline: async function (url) {
+        let result = await handle.db.select(url)
+        if (result != undefined) {
+            return {status: 1, result:result}
+        } else {
+            return {status: -1}
+        }
     },
 
     showMusicControllerButton: async function (id) {

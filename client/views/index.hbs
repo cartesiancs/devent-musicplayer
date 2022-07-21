@@ -44,6 +44,7 @@
 
     <script>
         const routes = {
+            "/": `{{> pages/about}}`,
             "/page/app": `{{> pages/home}} `,
             "/page/about": `{{> pages/about}}`,
             "/page/upload": `{{> pages/upload}}`,
@@ -68,6 +69,21 @@
     <script src="/static/dist/index.js"></script>
     <script src="/static/js/client.router.js"></script>
 
+
+<script>
+  handle.db.open()
+
+
+  async function aa() {
+  let aaa = await handle.db.select('/uploads/364d504136d1455d801f6d5b49b3a12c.mp3')
+  console.log(aaa)
+  }
+
+
+
+
+
+</script>
 
 
   </body>

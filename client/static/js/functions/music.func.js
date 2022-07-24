@@ -1,6 +1,7 @@
 const musicFunc = {
     object: {
-        audio: new Audio(),
+        audio: document.getElementById("audio"),
+        audioSource: null,
         currentAudioUrl: '',
         currentPlaylistUrl: [],
         existAudio: false,
@@ -67,6 +68,7 @@ const musicFunc = {
 
             body_index.innerText = count_music
             body_music_title.innerText = element.music_title
+            body_music_download.classList.add("text-end")
             if (offline.status == 1) {
                 body_music_download.innerHTML = `<i class="fas fa-download text-secondary icon-sm"></i>`
             }
@@ -87,8 +89,16 @@ const musicFunc = {
     playMusic: async function (url) {
         let offline = await this.loadOffline(url)
         if (offline.status == 1) {
-            let blob = new Blob([offline.result]);
-            let blobUrl = window.URL.createObjectURL(blob);
+            let blob = new Blob([offline.result], {type: 'audio/mpeg'});
+            let blobUrl;
+
+            try {
+                blobUrl = webkitURL.createObjectURL(blob);
+            }
+            catch(err) {
+                blobUrl = URL.createObjectURL(blob);
+            }
+            //let blobUrl = window.URL.createObjectURL(blob);
             this.replacePlaylist(url, blobUrl)
             url = blobUrl
             console.log('off')
@@ -106,8 +116,14 @@ const musicFunc = {
 
         } else {
             this.object.currentAudioUrl = url
-            this.object.audio = new Audio(url);
+            //this.object.audio = new Audio(url);
+            this.object.audio = document.getElementById("audio")
+            this.object.audioSource = document.getElementById("audio_source")
+
+            this.object.audioSource.src = url
+            this.object.audio.load();
             this.object.audio.play();
+            
             this.object.existAudio = true
             this.modal.player.show()
             document.querySelector("#player_btn_play").setAttribute("onclick", `handle.musicFunc.playMusic('${url}')`)

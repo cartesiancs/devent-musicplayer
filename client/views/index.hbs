@@ -24,12 +24,18 @@
   </head>
   <body>
     <div class="container-fluid mt-5" id="app"></div>
-    <div id="audio"></div>
+
     <dds-modal
         modal-id="player_music"
         modal-align="end">
         <dds-content>
             <div class="mb-3 text-center">
+                  <div>
+                    <audio id="audio" controls>
+                        <source id="audio_source" src="" type="audio/mpeg">
+                        이 문장은 여러분의 브라우저가 audio 태그를 지원하지 않을 때 화면에 표시됩니다!
+                    </audio>
+                  </div>
                 <input type="range" class="form-range" id="player_range" onchange="handle.musicFunc.setCurrentTime()">
 
                 <button id="player_btn_play" class="btn btn-transparent" onclick="handle.musicFunc.playMusic()"><i class="fas fa-play-circle icon-xl"></i></button>
